@@ -50,6 +50,13 @@ nav a {
   font-weight: 500;
 }
 
+.menu-toggle {
+  display: none;
+  background: none;
+  font-size: 1.5rem;
+}
+
+
 #home {
   text-align: center;
   background-color: #ffffff;
@@ -119,3 +126,24 @@ button:hover {
   opacity: 0.9;
 }
 
+@media (max-width: 768px) {
+
+  nav {
+    flex-wrap: wrap;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    width: 100%;
+    flex-direction: column;
+    margin-top: 1rem;
+    display: none;
+  }
+
+  .nav-links li {
+    padding: 0.5rem 0;
+  }
+}
