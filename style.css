@@ -48,11 +48,15 @@ nav a {
   font-weight: 500;
 }
 
+
 .menu-toggle {
-  display: none;
   background: none;
-  font-size: 1.5rem;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #000; /* force visibility */
 }
+
 
 
 #home {
@@ -131,7 +135,7 @@ button:hover {
   }
 
   .menu-toggle {
-    display: block;
+    display: block
   }
 
   .nav-links {
@@ -144,6 +148,11 @@ button:hover {
   .nav-links li {
     padding: 0.5rem 0;
   }
+
+.nav-links.active {
+  display: flex;
+}
+
 }
 
 /* Footer */
