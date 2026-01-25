@@ -1,9 +1,12 @@
+/*Global CSS*/
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
+/*Body*/
 
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -12,14 +15,20 @@ body {
   background-color: #f9f9f9;
 }
 
+/*General Section*/
+
 section {
   padding: 4rem 2rem;
 }
+
+/*Header*/
 
 header {
   background-color: #ffffff;
   border-bottom: 1px solid #e5e5e5;
 }
+
+/*Navigation*/
 
 nav {
   max-width: 1200px;
@@ -48,16 +57,18 @@ nav a {
   font-weight: 500;
 }
 
+/*Menu-Toggle*/
 
 .menu-toggle {
   background: none;
   border: none;
   font-size: 1.8rem;
   cursor: pointer;
-  color: #000; /* force visibility */
+  color: #000;
+  /* color is black to force visibility of toggle because the default page is white */
 }
 
-
+/* Nav Menu*/
 
 #home {
   text-align: center;
@@ -81,6 +92,7 @@ nav a {
 }
 
 /* Product Grid */
+
 .product-grid {
   max-width: 1200px;
   margin: 0 auto;
@@ -115,6 +127,8 @@ nav a {
   font-weight: 600;
 }
 
+/* General Button*/
+
 button {
   background-color: #111;
   color: #fff;
@@ -127,6 +141,8 @@ button {
 button:hover {
   opacity: 0.9;
 }
+
+/*Media Query*/
 
 @media (max-width: 768px) {
 
@@ -149,13 +165,14 @@ button:hover {
     padding: 0.5rem 0;
   }
 
-.nav-links.active {
-  display: flex;
-}
+  .nav-links.active {
+    display: flex;
+  }
 
 }
 
 /* Footer */
+
 .site-footer {
   background-color: #0d0d0d;
   color: #eaeaea;
@@ -208,3 +225,4 @@ button:hover {
   color: #888;
 }
 
+/*End of Code*/
