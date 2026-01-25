@@ -144,7 +144,7 @@ button:hover {
 
 /*Media Query*/
 
-@media (max-width: 768px) {
+@media (max-width: 520px) {
 
   nav {
     flex-wrap: wrap;
