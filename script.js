@@ -1,24 +1,47 @@
+console.log("script loaded");
 
-/*This code is for toggling the menu links*/
+/* Cart state */
+let cart = [];
 
+/* Menu toggle logic */
 const menuToggle = document.querySelector(".menu-toggle");
 const navLinks = document.querySelector(".nav-links");
-const navItems = document.querySelectorAll(".nav-links a"); 
-
-
-/*This code is for toggling on and off menu link*/
+const navItems = document.querySelectorAll(".nav-links a");
 
 menuToggle.addEventListener("click", () => {
   navLinks.classList.toggle("active");
 });
 
-/*This code is for when you click a link in the nav menu
- and the toggle resets or closes  automatically*/
-
 navItems.forEach(link => {
   link.addEventListener("click", () => {
-     navItems.forEach(item => item.classList.remove("active"));
+    navLinks.classList.remove("active");
   });
 });
 
+/* Product cart logic */
+const addToCartButtons = document.querySelectorAll(".product-card button");
 
+addToCartButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    const product = {
+      id: button.dataset.id,
+      name: button.dataset.name,
+      price: Number(button.dataset.price),
+      quantity: 1
+    };
+
+    addToCart(product);
+  });
+});
+
+function addToCart(product) {
+  const existingProduct = cart.find(item => item.id === product.id);
+
+  if (existingProduct) {
+    existingProduct.quantity += 1;
+  } else {
+    cart.push(product);
+  }
+
+  console.log(cart);
+}
