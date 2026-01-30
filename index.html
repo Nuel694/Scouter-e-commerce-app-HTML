@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html5>
 <html lang="en">
 
 <head>
@@ -11,7 +11,7 @@
 
 <body>
 
-  <!--HEADER OR NAVIGATION----------------------------------------------------------------------->
+  <!--HEADER AND NAVIGATION----------------------------------------------------------------------->
 
   <header>
     <nav>
@@ -36,7 +36,7 @@
   <section id="home" class="hero">
     <h2>Welcome to SCOUTER</h2>
     <p>Discover amazing products at unbeatable prices.</p>
-    <button>Scout Now!</button>
+    <button onclick="location.href = '#products'">Scout Now!</button>
     <img src="images/Zealot.jpg" alt="Zealot speaker">
   </section>
 
@@ -53,7 +53,8 @@
         <img src="images/G-pad.jpg" alt="G-pad">
         <h3>Huion Inspiroy H1060P Battery-Free Pen Tablet - Black</h3>
         <p>N210,000</p>
-        <button data-id="0" data-name="Huion Inspiroy H1060P" data-price="210000">Add to Cart</button>
+        <button data-id="Huion Inspiroy H1060P" data-name="Huion Inspiroy H1060P" data-price="210000">Add to
+          Cart</button>
       </article>
 
       <!-- PRODUCT 2------------------------------------------------------------------------------->
@@ -62,7 +63,8 @@
         <img src="images/PS5.jpg" alt="PS5">
         <h3>Sony Computer Entertainment Play Station 5 Slim</h3>
         <p>N920,000</p>
-        <button data-id="1" data-name="Sony PlayStation 5 Slim" data-price="920000">Add to Cart</button>
+        <button data-id="Sony PlayStation 5 Slim" data-name="Sony PlayStation 5 Slim" data-price="920000">Add to
+          Cart</button>
       </article>
 
       <!-- PRODUCT 3------------------------------------------------------------------------------>
@@ -71,7 +73,7 @@
         <img src="images/HP.jpg" alt="HP">
         <h3>Hp EliteBook 840 G6 Intel Core I5-16GB RAM/512GB SSD/Backlit Keyboard/FP Reader Wins 11 Pro</h3>
         <p>N455,500</p>
-        <button data-id="2" data-name="HP Elitebook 840 G6" data-price="455000">Add to Cart</button>
+        <button data-id="HP Elitebook 840 G6" data-name="HP Elitebook 840 G6" data-price="455000">Add to Cart</button>
       </article>
 
       <!-- PRODUCT 4--------------------------------------------------------------------------->
@@ -80,7 +82,8 @@
         <img src="images/Outfit.jpg" alt="Outfit">
         <h3>Dou-color Men's 2-in-1 Short Sleeved Long Pants Set - White</h3>
         <p>N15,000</p>
-        <button data-id="3" data-name="Duo-Color Men's 2-in-1" data-price="15000">Add to Cart</button>
+        <button data-id="Duo-Color Men's 2-in-1" data-name="Duo-Color Men's 2-in-1" data-price="15000">Add to
+          Cart</button>
       </article>
 
     </div>
@@ -115,8 +118,10 @@
 
   <section id="cart">
     <h2>Your Cart</h2>
-    <p>No items in your cart yet.</p>
+    <div id="cart-items"></div>
+    <p id="cart-total"></p>
   </section>
+
 
   <!--FOOTER-------------------------------------------------------------------------------------->
 
