@@ -6,6 +6,30 @@ console.log("script loaded");
 
 let cart = [];
 
+const cartItemsContainer = document.getElementById("cart-items");
+
+const cartTotalElement = document.getElementById("cart-total");
+
+function calculateCartTotal() {
+  let total = 0;
+
+  cart.forEach((item) => {
+    console.log(
+      "price:",
+      item.price,
+      "| type:",
+      typeof item.price,
+      "| quantity:",
+      item.quantity,
+    );
+
+    total += item.price * item.quantity;
+  });
+
+  console.log("TOTAL:", total);
+  return total;
+}
+
 /*MENU TOGGLE LOGIC--------------------------------------------------------------------------------------------*/
 
 const menuToggle = document.querySelector(".menu-toggle");
@@ -48,5 +72,52 @@ function addToCart(product) {
     cart.push(product);
   }
 
+  renderCart();
+
   console.log(cart);
 }
+
+function renderCart() {
+  cartItemsContainer.innerHTML = "";
+
+  if (cart.length === 0) {
+    cartItemsContainer.innerHTML = "<p>No items in your cart yet.</p>";
+    cartTotalElement.textContent = "";
+    return;
+  }
+
+  cart.forEach((item) => {
+    const cartItem = document.createElement("div");
+
+    cartItem.innerHTML = `
+      <p>
+        ${item.name} — ₦${item.price} × ${item.quantity}
+        <button class="remove-btn" data-id="${item.id}">Remove</button>
+      </p>
+    `;
+
+    cartItemsContainer.appendChild(cartItem);
+  });
+
+  attachRemoveHandlers();
+}
+
+function attachRemoveHandlers() {
+  const removeButtons = document.querySelectorAll(".remove-btn");
+
+  removeButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const id = button.dataset.id;
+      removeFromCart(id);
+    });
+  });
+}
+
+function removeFromCart(id) {
+  cart = cart.filter((item) => item.id !== id);
+  renderCart();
+  console.log(cart);
+}
+
+const total = calculateCartTotal();
+cartTotalElement.textContent = `Total: ₦${total.toLocaleString()}`;
