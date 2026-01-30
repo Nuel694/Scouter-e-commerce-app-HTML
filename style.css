@@ -6,6 +6,10 @@
   box-sizing: border-box;
 }
 
+.html {
+  scroll-behavior: smooth;
+}
+
 /*BODY--------------------------------------------------------------------------------------------*/
 
 body {
@@ -29,6 +33,11 @@ header {
 }
 
 /*NAVIGATION------------------------------------------------------------------------------------------*/
+
+
+.nav-links {
+  transform: scale(1.1);
+}
 
 nav {
   max-width: 1200px;
@@ -73,6 +82,7 @@ nav a {
 #home {
   text-align: center;
   background-color: #ffffff;
+
 }
 
 #home h2 {
@@ -136,10 +146,16 @@ button {
   padding: 0.6rem 1.2rem;
   cursor: pointer;
   border-radius: 4px;
+  transition: all 0.2 ease;
+}
+
+button:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px #2e7d32;
 }
 
 button:hover {
-  opacity: 0.9;
+  background-color: rgb(150, 2, 2);
 }
 
 /*MEDIA QUERY---------------------------------------------------------------------------------*/
@@ -232,6 +248,15 @@ button:hover {
   text-align: center;
   font-size: 0.85rem;
   color: #888;
+}
+
+.remove-btn {
+  margin-left: 1rem;
+  background: crimson;
+  color: white;
+  border: none;
+  padding: 0.3rem 0.6rem;
+  cursor: pointer;
 }
 
 /*END OF CODE--------------------------------------------------------------------------------*/
