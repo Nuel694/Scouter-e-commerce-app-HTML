@@ -1,56 +1,63 @@
-/*ENSURING JAVASCRIPT IS WORKING--------------------------------------------------------------------*/
-
+/* =========================================================
+   ENSURE JAVASCRIPT IS LOADED
+========================================================= */
 console.log("script loaded");
 
-/*CART STATE----------------------------------------------------------------------------------*/
+/* =========================================================
+   CART STATE & STORAGE
+========================================================= */
 
 let cart = [];
 
 const cartItemsContainer = document.getElementById("cart-items");
-
 const cartTotalElement = document.getElementById("cart-total");
 
-function calculateCartTotal() {
-  let total = 0;
-
-  cart.forEach((item) => {
-    console.log(
-      "price:",
-      item.price,
-      "| type:",
-      typeof item.price,
-      "| quantity:",
-      item.quantity,
-    );
-
-    total += item.price * item.quantity;
-  });
-
-  console.log("TOTAL:", total);
-  return total;
+/* Load cart */
+const storedCart = localStorage.getItem("cart");
+if (storedCart) {
+  cart = JSON.parse(storedCart);
 }
 
-/*MENU TOGGLE LOGIC--------------------------------------------------------------------------------------------*/
+/* Save cart */
+function saveCart() {
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+/* =========================================================
+   CART CALCULATIONS
+========================================================= */
+
+function calculateCartTotal() {
+  return cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+}
+
+function updateCartCount() {
+  const cartCount = document.getElementById("cart-count");
+  if (!cartCount) return;
+
+  const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+  cartCount.textContent = totalQuantity;
+}
+
+/* =========================================================
+   MENU TOGGLE
+========================================================= */
 
 const menuToggle = document.querySelector(".menu-toggle");
 const navLinks = document.querySelector(".nav-links");
-const navItems = document.querySelectorAll(".nav-links a");
 
-menuToggle.addEventListener("click", () => {
-  navLinks.classList.toggle("active");
-});
-
-navItems.forEach((link) => {
-  link.addEventListener("click", () => {
-    navLinks.classList.remove("active");
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
   });
-});
+}
 
-/*PRODUCT CART LOGIC---------------------------------------------------------------------------*/
+/* =========================================================
+   ADD TO CART
+========================================================= */
 
-const addToCartButtons = document.querySelectorAll(".product-card button");
-
-addToCartButtons.forEach((button) => {
+document.querySelectorAll(".product-card button").forEach((button) => {
   button.addEventListener("click", () => {
     const product = {
       id: button.dataset.id,
@@ -64,60 +71,114 @@ addToCartButtons.forEach((button) => {
 });
 
 function addToCart(product) {
-  const existingProduct = cart.find((item) => item.id === product.id);
+  const existing = cart.find((item) => item.id === product.id);
 
-  if (existingProduct) {
-    existingProduct.quantity += 1;
+  if (existing) {
+    existing.quantity++;
   } else {
     cart.push(product);
   }
 
+  saveCart();
   renderCart();
-
-  console.log(cart);
 }
 
+/* =========================================================
+   RENDER CART
+========================================================= */
+
 function renderCart() {
+  if (!cartItemsContainer || !cartTotalElement) return;
+
   cartItemsContainer.innerHTML = "";
 
   if (cart.length === 0) {
-    cartItemsContainer.innerHTML = "<p>No items in your cart yet.</p>";
+    cartItemsContainer.innerHTML = "<p>No items in your cart.</p>";
     cartTotalElement.textContent = "";
+    updateCartCount();
     return;
   }
 
   cart.forEach((item) => {
-    const cartItem = document.createElement("div");
+    const div = document.createElement("div");
 
-    cartItem.innerHTML = `
+    div.innerHTML = `
       <p>
-        ${item.name} — ₦${item.price} × ${item.quantity}
+        ${item.name} — ₦${item.price.toLocaleString()}
+        <button class="qty-btn decrease" data-id="${item.id}" ${item.quantity === 1 ? "disabled" : ""}>−</button>
+        <span>${item.quantity}</span>
+        <button class="qty-btn increase" data-id="${item.id}">+</button>
         <button class="remove-btn" data-id="${item.id}">Remove</button>
       </p>
     `;
 
-    cartItemsContainer.appendChild(cartItem);
+    cartItemsContainer.appendChild(div);
   });
 
+  cartTotalElement.textContent = `Total: ₦${calculateCartTotal().toLocaleString()}`;
+
+  attachQuantityHandlers();
   attachRemoveHandlers();
+  updateCartCount();
 }
 
-function attachRemoveHandlers() {
-  const removeButtons = document.querySelectorAll(".remove-btn");
+/* =========================================================
+   REMOVE ITEM
+========================================================= */
 
-  removeButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      const id = button.dataset.id;
-      removeFromCart(id);
+function attachRemoveHandlers() {
+  document.querySelectorAll(".remove-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      cart = cart.filter((item) => item.id !== btn.dataset.id);
+      saveCart();
+      renderCart();
     });
   });
 }
 
-function removeFromCart(id) {
-  cart = cart.filter((item) => item.id !== id);
-  renderCart();
-  console.log(cart);
+/* =========================================================
+   QUANTITY CONTROLS
+========================================================= */
+
+function attachQuantityHandlers() {
+  document.querySelectorAll(".increase").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const item = cart.find((i) => i.id === btn.dataset.id);
+      item.quantity++;
+      saveCart();
+      renderCart();
+    });
+  });
+
+  document.querySelectorAll(".decrease").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const item = cart.find((i) => i.id === btn.dataset.id);
+      if (item.quantity > 1) {
+        item.quantity--;
+        saveCart();
+        renderCart();
+      }
+    });
+  });
 }
 
-const total = calculateCartTotal();
-cartTotalElement.textContent = `Total: ₦${total.toLocaleString()}`;
+/* =========================================================
+   CLEAR CART
+========================================================= */
+
+const clearCartButton = document.getElementById("clear-cart");
+
+if (clearCartButton) {
+  clearCartButton.addEventListener("click", () => {
+    cart = [];
+    saveCart();
+    renderCart();
+  });
+}
+
+
+/* =========================================================
+   INITIAL RENDER
+========================================================= */
+
+renderCart();
