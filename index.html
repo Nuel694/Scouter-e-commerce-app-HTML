@@ -1,4 +1,4 @@
-<!DOCTYPE html5>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -11,120 +11,112 @@
 
 <body>
 
-  <!--HEADER AND NAVIGATION----------------------------------------------------------------------->
-
+  <!-- HEADER & NAVIGATION -->
   <header>
     <nav>
       <h1 class="scouter">SCOUTER</h1>
 
-      <button class="menu-toggle" aria-label="Toggle navigation">
-        ☰
-      </button>
+      <button class="menu-toggle" aria-label="Toggle navigation">☰</button>
 
       <ul class="nav-links">
         <li><a href="#home">Home</a></li>
         <li><a href="#products">Products</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li><a href="#cart">Cart</a></li>
+        <li>
+          <a href="#cart">
+            Cart <span id="cart-count">0</span>
+          </a>
+        </li>
       </ul>
     </nav>
   </header>
 
-  <!--HERO SECTION-------------------------------------------------------------------------------->
-
+  <!-- HERO SECTION -->
   <section id="home" class="hero">
     <h2>Welcome to SCOUTER</h2>
     <p>Discover amazing products at unbeatable prices.</p>
-    <button onclick="location.href = '#products'">Scout Now!</button>
+    <button onclick="location.href='#products'">Scout Now!</button>
     <img src="images/Zealot.jpg" alt="Zealot speaker">
   </section>
 
-  <!-- PRODUCTS SECTION------------------------------------------------------------------------------------->
-
+  <!-- PRODUCTS -->
   <section id="products">
     <h2>Featured Products</h2>
 
     <div class="product-grid">
 
-      <!-- PRODUCT 1-------------------------------------------------------------------------------->
-
       <article class="product-card">
         <img src="images/G-pad.jpg" alt="G-pad">
         <h3>Huion Inspiroy H1060P Battery-Free Pen Tablet - Black</h3>
-        <p>N210,000</p>
-        <button data-id="Huion Inspiroy H1060P" data-name="Huion Inspiroy H1060P" data-price="210000">Add to
-          Cart</button>
+        <p>₦210,000</p>
+        <button data-id="huion-h1060p" data-name="Huion Inspiroy H1060P" data-price="210000">
+          Add to Cart
+        </button>
       </article>
-
-      <!-- PRODUCT 2------------------------------------------------------------------------------->
 
       <article class="product-card">
         <img src="images/PS5.jpg" alt="PS5">
-        <h3>Sony Computer Entertainment Play Station 5 Slim</h3>
-        <p>N920,000</p>
-        <button data-id="Sony PlayStation 5 Slim" data-name="Sony PlayStation 5 Slim" data-price="920000">Add to
-          Cart</button>
+        <h3>Sony PlayStation 5 Slim</h3>
+        <p>₦920,000</p>
+        <button data-id="ps5-slim" data-name="Sony PlayStation 5 Slim" data-price="920000">
+          Add to Cart
+        </button>
       </article>
-
-      <!-- PRODUCT 3------------------------------------------------------------------------------>
 
       <article class="product-card">
-        <img src="images/HP.jpg" alt="HP">
-        <h3>Hp EliteBook 840 G6 Intel Core I5-16GB RAM/512GB SSD/Backlit Keyboard/FP Reader Wins 11 Pro</h3>
-        <p>N455,500</p>
-        <button data-id="HP Elitebook 840 G6" data-name="HP Elitebook 840 G6" data-price="455000">Add to Cart</button>
+        <img src="images/HP.jpg" alt="HP Laptop">
+        <h3>HP EliteBook 840 G6</h3>
+        <p>₦455,500</p>
+        <button data-id="hp-840-g6" data-name="HP EliteBook 840 G6" data-price="455500">
+          Add to Cart
+        </button>
       </article>
-
-      <!-- PRODUCT 4--------------------------------------------------------------------------->
 
       <article class="product-card">
         <img src="images/Outfit.jpg" alt="Outfit">
-        <h3>Dou-color Men's 2-in-1 Short Sleeved Long Pants Set - White</h3>
-        <p>N15,000</p>
-        <button data-id="Duo-Color Men's 2-in-1" data-name="Duo-Color Men's 2-in-1" data-price="15000">Add to
-          Cart</button>
+        <h3>Dou-color Men's 2-in-1 Outfit</h3>
+        <p>₦15,000</p>
+        <button data-id="duo-color-outfit" data-name="Duo-Color Men's Outfit" data-price="15000">
+          Add to Cart
+        </button>
       </article>
 
     </div>
   </section>
 
-  <!--ABOUT SECTION---------------------------------------------------------------------------->
-
+  <!-- ABOUT -->
   <section id="about">
     <h2>About SCOUTER</h2>
     <p>We provide quality products delivered fast and safely to your door.</p>
   </section>
 
-  <!--CONTACT SECTION---------------------------------------------------------------------------->
-
+  <!-- CONTACT -->
   <section id="contact">
     <h2>Contact Us</h2>
     <form>
-      <label for="name">Name:</label>
-      <input type="text" id="name" required>
+      <label>Name</label>
+      <input type="text" name="name" required>
 
-      <label for="email">Email:</label>
-      <input type="email" id="email" required>
+      <label>Email</label>
+      <input type="email" name="email" required>
 
-      <label for="message">Message:</label>
-      <textarea id="message" required></textarea>
+      <label>Message</label>
+      <textarea name="message" required></textarea>
 
       <button type="submit">Send</button>
     </form>
   </section>
 
-  <!--CART SECTION--------------------------------------------------------------------------------->
-
+  <!-- CART -->
   <section id="cart">
     <h2>Your Cart</h2>
     <div id="cart-items"></div>
     <p id="cart-total"></p>
+    <button id="clear-cart">Clear Cart</button>
   </section>
 
-
-  <!--FOOTER-------------------------------------------------------------------------------------->
-
+  <!-- FOOTER -->
   <footer class="site-footer">
     <div class="footer-container">
 
@@ -160,5 +152,3 @@
 </body>
 
 </html>
-
-<!--END OF CODE-------------------------------------------------------------------------------->
