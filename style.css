@@ -1,4 +1,6 @@
-/*GLOBAL CSS-----------------------------------------------------------------------------------*/
+/* =========================================================
+   GLOBAL RESET
+========================================================= */
 
 * {
   margin: 0;
@@ -6,11 +8,13 @@
   box-sizing: border-box;
 }
 
-.html {
+html {
   scroll-behavior: smooth;
 }
 
-/*BODY--------------------------------------------------------------------------------------------*/
+/* =========================================================
+   BODY
+========================================================= */
 
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -19,24 +23,21 @@ body {
   background-color: #f9f9f9;
 }
 
-/*GENERAL SECTION----------------------------------------------------------------------------------*/
+/* =========================================================
+   GENERAL LAYOUT
+========================================================= */
 
 section {
   padding: 4rem 2rem;
 }
 
-/*HEADER------------------------------------------------------------------------------------------------*/
+/* =========================================================
+   HEADER & NAVIGATION
+========================================================= */
 
 header {
   background-color: #ffffff;
   border-bottom: 1px solid #e5e5e5;
-}
-
-/*NAVIGATION------------------------------------------------------------------------------------------*/
-
-
-.nav-links {
-  transform: scale(1.1);
 }
 
 nav {
@@ -66,23 +67,34 @@ nav a {
   font-weight: 500;
 }
 
-/*MENU-TOGGLE-----------------------------------------------------------------------------------------------------------*/
+/* =========================================================
+   MENU TOGGLE
+========================================================= */
 
 .menu-toggle {
+  display: none;
   background: none;
   border: none;
   font-size: 1.8rem;
   cursor: pointer;
   color: #000;
-  /* color is black to force visibility of toggle because the default page is white */
 }
 
-/*NAV-MENU--------------------------------------------------------------------------------------*/
+/* =========================================================
+   NAV LINKS
+========================================================= */
+
+.nav-links {
+  display: flex;
+}
+
+/* =========================================================
+   HERO / HOME
+========================================================= */
 
 #home {
   text-align: center;
   background-color: #ffffff;
-
 }
 
 #home h2 {
@@ -101,7 +113,9 @@ nav a {
   cursor: pointer;
 }
 
-/* PRODUCT GRID-------------------------------------------------------------------------------*/
+/* =========================================================
+   PRODUCT GRID
+========================================================= */
 
 .product-grid {
   max-width: 1200px;
@@ -137,7 +151,9 @@ nav a {
   font-weight: 600;
 }
 
-/*GENERAL BUTTON----------------------------------------------------------------------------*/
+/* =========================================================
+   BUTTONS
+========================================================= */
 
 button {
   background-color: #111;
@@ -146,57 +162,47 @@ button {
   padding: 0.6rem 1.2rem;
   cursor: pointer;
   border-radius: 4px;
-  transition: all 0.2 ease;
-}
-
-button:active {
-  transform: translateY(4px);
-  box-shadow: 0 2px #2e7d32;
+  transition: all 0.2s ease;
 }
 
 button:hover {
   background-color: rgb(150, 2, 2);
 }
 
-/*MEDIA QUERY---------------------------------------------------------------------------------*/
-
-@media (max-width: 520px) {
-
-  nav {
-    flex-wrap: wrap;
-  }
-
-  .menu-toggle {
-    display: block
-  }
-
-  .nav-links {
-    width: 100%;
-    flex-direction: column;
-    margin-top: 1rem;
-    max-height: 0;
-    overflow: hidden;
-    transition: 0.3s ease;
-
-  }
-
-  .nav-links li {
-    padding: 0.5rem 0;
-  }
-
-  .nav-links.active {
-    display: flex;
-    max-height: 300px;
-  }
-
-  .nav-links a.active {
-    font-weight: 700;
-    border-bottom: 2px solid currentColor;
-  }
-
+button:active {
+  transform: translateY(2px);
 }
 
-/*FOOTER------------------------------------------------------------------------------------------*/
+/* =========================================================
+   CART & UI CONTROLS
+========================================================= */
+
+.remove-btn {
+  margin-left: 1rem;
+  background: crimson;
+  color: white;
+  border: none;
+  padding: 0.3rem 0.6rem;
+  cursor: pointer;
+}
+
+#cart-count {
+  background: crimson;
+  color: white;
+  font-size: 0.75rem;
+  padding: 2px 6px;
+  border-radius: 50%;
+  margin-left: 4px;
+}
+
+.qty-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
 
 .site-footer {
   background-color: #0d0d0d;
@@ -250,13 +256,35 @@ button:hover {
   color: #888;
 }
 
-.remove-btn {
-  margin-left: 1rem;
-  background: crimson;
-  color: white;
-  border: none;
-  padding: 0.3rem 0.6rem;
-  cursor: pointer;
-}
+/* =========================================================
+   MOBILE NAVIGATION
+========================================================= */
 
-/*END OF CODE--------------------------------------------------------------------------------*/
+@media (max-width: 520px) {
+
+  nav {
+    flex-wrap: wrap;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    width: 100%;
+    flex-direction: column;
+    margin-top: 1rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .nav-links.active {
+    max-height: 300px;
+  }
+
+  .nav-links li {
+    padding: 0.5rem 0;
+  }
+
+}
