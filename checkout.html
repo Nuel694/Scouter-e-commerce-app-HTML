@@ -1,0 +1,43 @@
+<script>
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  const itemsDiv = document.getElementById("checkout-items");
+  const totalP = document.getElementById("checkout-total");
+  const form = document.getElementById("checkout-form");
+
+  let total = 0;
+
+  if (cart.length === 0) {
+    itemsDiv.innerHTML = "<p>Your cart is empty.</p>";
+  } else {
+    cart.forEach(item => {
+      total += item.price * item.quantity;
+
+      const p = document.createElement("p");
+      p.textContent = `${item.name} × ${item.quantity}`;
+      itemsDiv.appendChild(p);
+    });
+
+    totalP.textContent = `Total: ₦${total.toLocaleString()}`;
+  }
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const order = {
+      customer: {
+        name: document.getElementById("fullName").value,
+        email: document.getElementById("email").value,
+        address: document.getElementById("address").value
+      },
+      cart,
+      total,
+      createdAt: new Date().toISOString()
+    };
+
+    localStorage.setItem("order", JSON.stringify(order));
+    localStorage.removeItem("cart");
+
+    window.location.href = "success.html";
+  });
+</script>
